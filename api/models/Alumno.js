@@ -9,17 +9,11 @@ module.exports = {
 
   attributes: {
 
-    dni : { type: 'string', size: 10 },
+    apellidos : { type: 'string', size: 45 },
 
-    apellido1 : { type: 'string', size: 30 },
+    nombre : { type: 'string', size: 45 },
 
-    apellido2 : { type: 'string', size: 30 },
-
-    nombre : { type: 'string', size: 30, required: true },
-
-    fechaNac : { type: 'date' },
-
-    email : { type: 'string', email: true, unique: true, required: true},
+    email : { type: 'string', email: true, size: 45},
 
     user: {
         model: 'user'
@@ -33,7 +27,9 @@ module.exports = {
     cuestionarios : {
     	collection : 'cuestionario',
     	via : 'alumnos'
-    }
+    },
+
+    
 
   }
 };

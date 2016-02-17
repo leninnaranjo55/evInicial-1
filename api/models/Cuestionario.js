@@ -9,7 +9,9 @@ module.exports = {
 
   attributes: {
 
-    observaciones : { type: 'string' },
+    //nombre : {type: 'string', size: 50, required: true},
+
+    observaciones : { type: 'string', size: 255 },
 
     fechaFin : { type: 'date' },
 
