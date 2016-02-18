@@ -6,6 +6,10 @@
  */
 
 module.exports = {
-	
+	alrespuesta: function(req, res, next) {
+		var respuestaRec = req.body.answered;
+		
+	}
+
 };
 
