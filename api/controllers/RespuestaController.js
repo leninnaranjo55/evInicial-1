@@ -12,7 +12,7 @@ module.exports = {
 			
 		Opcion.findOne({
 			where: { id: Number(respuestaRec) }
-		}).then(function(opcion){
+		}).populate("subopciones").then(function(opcion){
 			if(opcion){
 
 			}
