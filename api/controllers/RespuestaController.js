@@ -6,7 +6,12 @@
  */
 
 module.exports = {
-	alrespuesta: function(req, res, next) {
+
+		respuesta: function(req, res, next){
+		req.pregunta.comprobarRespuesta(req.body.answered, req.session.passport.user, req.cuestionario.id, req.pregunta.id);
+	}
+
+	/*alrespuesta: function(req, res, next) {
 		var respuestaRec = req.body.answered;
 		var guardavalor1;
 		var guardavalor2;
@@ -28,12 +33,12 @@ module.exports = {
 					//sails.log.verbose(guardavalor2);
 				}
 				});
-				console.log(req.session.passport.user);
+				//console.log(req.session.passport.user);
 
 				Alumno.findOne({
 					where: {user: req.session.passport.user}
 				}).then(function(alumno){
-					console.log(req.session.passport.user);
+					//console.log(req.session.passport.user);
 					if(alumno){
 
 			Respuesta.create({valor: guardavalor2, puntuacion: guardavalor1, cuestionario: req.params.cuestionarioId, pregunta: req.params.preguntaId, alumno: alumno.id }).exec(function createCB(err, created){
@@ -46,7 +51,7 @@ module.exports = {
 		});
 		
 	})
-}
+}*/
 
 };
 

@@ -61,10 +61,10 @@ module.exports.routes = {
     'CuestionarioController.asociarGrupo'
   ],
 
-    'POST r|^/cuestionario/(\\d+)/pregunta/(\\d+)/alrespuesta$|cuestionarioId,preguntaId' : [
+    'POST r|^/cuestionario/(\\d+)/pregunta/(\\d+)/respuesta$|cuestionarioId,preguntaId' : [
     'CuestionarioController.load',
     'PreguntaController.load',
-    'RespuestaController.alrespuesta'
+    'RespuestaController.respuesta'
     ],
 
 };
