@@ -1,4 +1,92 @@
 [
+   {
+    "model":"subOpcion",
+    "items":[
+    {
+        "nombre": "fraction",
+        "valor": "100",
+        "id": 1
+    },
+    {
+        "nombre": "text",
+        "valor": "4",
+        "id": 2
+    },
+        {
+        "nombre": "fraction",
+        "valor": "0",
+        "id": 3
+    },
+    {
+        "nombre": "text",
+        "valor": "6",
+        "id": 4
+    },
+        {
+        "nombre": "fraction",
+        "valor": "0",
+        "id": 5
+    },
+    {
+        "nombre": "text",
+        "valor": "8",
+        "id": 6
+    }
+    ]
+  },
+  {
+    "model":"opcion",
+    "items":[
+    {
+        "tipoOpcion": "Answer 1",
+        "id": 1,
+        "subopciones":[
+            {
+                "nombre": "fraction",
+                "valor": "100",
+                "id": 1
+            },
+            {
+                "nombre": "text",
+                "valor": "4",
+                "id": 2
+            }
+        ]
+    },
+    {
+        "tipoOpcion": "Answer 2",
+        "id": 2,
+        "subopciones":[
+            {
+                "nombre": "fraction",
+                "valor": "0",
+                "id": 3
+            },
+            {
+                "nombre": "text",
+                "valor": "6",
+                "id": 4
+            }
+        ]
+    },
+    {
+        "tipoOpcion": "Answer 3",
+        "id": 3,
+        "subopciones":[
+            {
+                "nombre": "fraction",
+                "valor": "0",
+                "id": 5
+            },
+            {
+                "nombre": "text",
+                "valor": "8",
+                "id": 6
+            }
+        ]
+    }
+    ]
+  },
   {
     "model":"pregunta",
     "items":[
@@ -16,9 +104,64 @@
         "enunciado": "Capital de Italia",
         "tipo": "Numerica",
         "id": 3
+    },
+    {
+        "enunciado": "2+2",
+        "tipo": "Numerica",
+        "id": 4,
+        "opciones":[
+        {
+            "tipoOpcion": "Answer 1",
+            "id": 1,
+            "subopciones":[
+               {
+                    "nombre": "fraction",
+                    "valor": "100",
+                    "id": 1
+                },
+                {
+                    "nombre": "text",
+                    "valor": "4",
+                    "id": 2
+                }
+            ]
+        },
+        {
+            "tipoOpcion": "Answer 2",
+            "id": 2,
+            "subopciones":[
+               {
+                    "nombre": "fraction",
+                    "valor": "0",
+                    "id": 3
+                },
+                {
+                    "nombre": "text",
+                    "valor": "6",
+                    "id": 4
+                }
+            ]
+        },
+        {
+            "tipoOpcion": "Answer 3",
+            "id": 3,
+            "subopciones":[
+               {
+                    "nombre": "fraction",
+                    "valor": "0",
+                    "id": 5
+                },
+                {
+                    "nombre": "text",
+                    "valor": "8",
+                    "id": 6
+                }
+            ]
     }
-]
-  },
+    ]
+  }
+  ]
+},
   {
     "model":"cuestionario",
     "items":[
