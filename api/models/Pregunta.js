@@ -16,7 +16,7 @@ module.exports = {
 	},
 
     tipo : { type: 'string',
-             enum: ['Ensayo', 'Numerica', 'True/False', 'EleccionMultiple'],
+             enum: ['Ensayo', 'Matching', 'Numerica', 'True/False', 'EleccionMultiple'],
     	  	required: true
     },
 
@@ -42,6 +42,37 @@ module.exports = {
 
         switch(this.tipo) {
             case "Ensayo":
+            this.comprobarEnsayo(respuesta, function cb(puntuacion, texto){
+                    Alumno.findOne({
+                        where: {user: user}
+                    }).then(function(alumno){
+                        if(alumno){
+                            Respuesta.create({valor: texto, puntuacion: puntuacion, cuestionario: cuestionario, pregunta: pregunta, alumno: alumno.id})
+                            .exec(function createCB(err, created){
+                                res.json(created);
+                            })
+                        }else{
+                            sails.log.verbose("No estas autenticado como usuario Alumno");
+                        }
+                    })
+                });
+            
+            case "Emparejamiento":
+                this.comprobarEmparejamiento(respuesta, function cb(puntuacion, texto){
+                    Alumno.findOne({
+                        where: {user: user}
+                    }).then(function(alumno){
+                        if(alumno){
+                            Respuesta.create({valor: texto, puntuacion: puntuacion, cuestionario: cuestionario, pregunta: pregunta, alumno: alumno.id})
+                            .exec(function createCB(err, created){
+                                res.json(created);
+                            })
+                        }else{
+                            sails.log.verbose("No estas autenticado como usuario Alumno");
+                        }
+                    })
+                });
+                break;
 
                
                 break;
