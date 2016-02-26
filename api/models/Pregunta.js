@@ -38,44 +38,19 @@ module.exports = {
     },
     //Mezcla de codigos de los demas
 
-   comprobarRespuesta: function(respuesta, user, cuestionario, pregunta, res){
+   comprobarRespuesta: function(respuesta, user, cuestionario, pregunta, cb1){
 
         switch(this.tipo) {
-            case "Ensayo":
-            this.comprobarEnsayo(respuesta, function cb(puntuacion, texto){
-                    Alumno.findOne({
-                        where: {user: user}
-                    }).then(function(alumno){
-                        if(alumno){
-                            Respuesta.create({valor: texto, puntuacion: puntuacion, cuestionario: cuestionario, pregunta: pregunta, alumno: alumno.id})
-                            .exec(function createCB(err, created){
-                                res.json(created);
-                            })
-                        }else{
-                            sails.log.verbose("No estas autenticado como usuario Alumno");
-                        }
-                    })
-                });
+            /*case "Ensayo":
             
-            case "Emparejamiento":
-                this.comprobarEmparejamiento(respuesta, function cb(puntuacion, texto){
-                    Alumno.findOne({
-                        where: {user: user}
-                    }).then(function(alumno){
-                        if(alumno){
-                            Respuesta.create({valor: texto, puntuacion: puntuacion, cuestionario: cuestionario, pregunta: pregunta, alumno: alumno.id})
-                            .exec(function createCB(err, created){
-                                res.json(created);
-                            })
-                        }else{
-                            sails.log.verbose("No estas autenticado como usuario Alumno");
-                        }
-                    })
-                });
-                break;
+                 break;*/
+
+            /*case "Emparejamiento":
+               
+                break;*/
 
                
-                break;
+               
             case "Numerica":
                 this.comprobarNumerica(respuesta, function cb(puntuacion, texto){
                     Alumno.findOne({
@@ -85,7 +60,7 @@ module.exports = {
                             if(alumno){
                                 Respuesta.create({valor: texto, puntuacion: puntuacion, cuestionario: cuestionario, pregunta: pregunta, alumno: alumno.id })
                                 .exec(function createCB(err, created){
-                                    res.json(created);
+                                    cb1(created);
                                 })
                             }else{
                                 sails.log.verbose("No estas autenticado como usuario Alumno");
@@ -102,7 +77,7 @@ module.exports = {
                                 if(alumno){
                                     Respuesta.create({valor: texto, puntuacion: puntuacion, cuestionario: cuestionario, pregunta: pregunta, alumno: alumno.id})
                                     .exec(function createCB(err, created){
-                                        res.json(created);
+                                       cb1(created);
                                     })
                                 }else{
                                     sails.log.verbose("No estas autenticado como usuario Alumno");
@@ -119,7 +94,7 @@ module.exports = {
                                 if(alumno){
                                     Respuesta.create({valor: "Correcto", puntuacion: 100, cuestionario: cuestionario, pregunta: pregunta, alumno: alumno.id})
                                     .exec(function createCB(err, created){
-                                        res.json(created);
+                                        cb1(created);
                                     })
                                 }else{
                                     sails.log.verbose("No estas autenticado como usuario Alumno");

@@ -50,6 +50,29 @@ module.exports = {
     }
   },
 
+
+   aJSON: function(cb) {
+
+      var preguntasJSON = [];
+      var cuestionarioJSON = this.toJSON();
+
+      this.preguntas.forEach(function(pregunta) {
+          preguntasJSON.push(pregunta.aJSON());
+      });
+
+      Promise.all(preguntasJSON).then(function(opciones) {
+        
+        preguntasJSON.forEach(function(preguntaJSON, index) {
+          cuestionarioJSON.preguntas[index].opciones = opciones;
+        });
+
+        cb(cuestionarioJSON);
+
+      });
+  },
+
+
+
   duplicar: function (cuestionario, cb) {
 
   // Before doing anything else, check if a primary key value
