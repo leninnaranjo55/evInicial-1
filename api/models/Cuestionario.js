@@ -62,8 +62,8 @@ module.exports = {
 
       Promise.all(preguntasJSON).then(function(opciones) {
         
-        preguntasJSON.forEach(function(preguntaJSON, index) {
-          cuestionarioJSON.preguntas[index].opciones = opciones;
+        opciones.forEach(function(opcionesPregunta, index) {
+          cuestionarioJSON.preguntas[index].opciones = opcionesPregunta;
         });
 
         cb(cuestionarioJSON);

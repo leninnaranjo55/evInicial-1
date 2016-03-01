@@ -33,83 +33,100 @@ module.exports = {
         via : 'pregunta'
     },
 
-   getPregunta: function(){
-        return this.toJSON();
-    },
+ 
     //Mezcla de codigos de los demas
 
    comprobarRespuesta: function(respuesta, user, cuestionario, pregunta, cb1){
-
+    Alumno.findOne({where: {user: user}})
+    .then(function(alumno){
+      if(alumno){
         switch(this.tipo) {
-            /*case "Ensayo":
-            
-                 break;*/
+            case "Ensayo":
+                this.comprobarEnsayo(respuesta, function cb(texto){
+                    Respuesta.create({valor: respuestaRecibida, cuestionario: cuestionario, pregunta: pregunta, alumno: alumno.id })
+                    .exec(function createCB(err, created){
+                     cb1(created);
 
-            /*case "Emparejamiento":
+                        })
+                
                
-                break;*/
+                
+            });            
+                 break;
+
+            case "Matching":
+                    this.comprobarEmparejamiento(respuesta, function (puntuacion, texto){
+                        Respuesta.create({valor: texto, puntuacion: puntuacion, cuestionario: cuestionario, pregunta: pregunta, alumno: alumno.id})
+                        .exec(function createCB(err, created){
+                            //sails.log.verbose(err);
+                            cb1(created);
+                        })
+                    });
+               
+                break;
 
                
                
             case "Numerica":
-                this.comprobarNumerica(respuesta, function cb(puntuacion, texto){
-                    Alumno.findOne({
-                            where: {user: user}
-                        }).then(function(alumno){
-                            //console.log(req.session.passport.user);
-                            if(alumno){
-                                Respuesta.create({valor: texto, puntuacion: puntuacion, cuestionario: cuestionario, pregunta: pregunta, alumno: alumno.id })
+                this.comprobarNumerica(respuesta, function cb(puntuacion, respuesta){
+                    
+                                Respuesta.create({valor: respuesta, puntuacion: puntuacion, cuestionario: cuestionario, pregunta: pregunta, alumno: alumno.id })
                                 .exec(function createCB(err, created){
                                     cb1(created);
                                 })
-                            }else{
-                                sails.log.verbose("No estas autenticado como usuario Alumno");
-                            }
-                        })
+                        
                 });
                
                 break;
-            case "True/Flase":
+            case "True/False":
                 this.comprobarTrueFalse(respuesta, function cb(puntuacion, texto){
-                            Alumno.findOne({
-                                where: {user: user}
-                            }).then(function(alumno){
-                                if(alumno){
+                            
                                     Respuesta.create({valor: texto, puntuacion: puntuacion, cuestionario: cuestionario, pregunta: pregunta, alumno: alumno.id})
                                     .exec(function createCB(err, created){
                                        cb1(created);
                                     })
-                                }else{
-                                    sails.log.verbose("No estas autenticado como usuario Alumno");
-                                }
-                            })
+                                
+                           
                         });
                
                 break;
             case "EleccionMultiple":
                 this.comprobarEleccionMultiple(respuesta, function cb(puntuacion, texto){
-                            Alumno.findOne({
-                                where: {user: user}
-                            }).then(function(alumno){
-                                if(alumno){
-                                    Respuesta.create({valor: "Correcto", puntuacion: 100, cuestionario: cuestionario, pregunta: pregunta, alumno: alumno.id})
+                           
+                                    Respuesta.create({valor: texto, puntuacion: puntuacion, cuestionario: cuestionario, pregunta: pregunta, alumno: alumno.id})
                                     .exec(function createCB(err, created){
                                         cb1(created);
                                     })
-                                }else{
-                                    sails.log.verbose("No estas autenticado como usuario Alumno");
-                                }
-                            })
+                                
+                           
                         });
                
                 break;
         }
+        }else{
+                sails.log.verbose("No estas autenticado como usuario Alumno");
+            }
+        }.bind(this))
        
     },
 
     comprobarNumerica: function(respuesta, cb) {
-        //var respuestaRec = req.body.answered;
-        var guardavalor1;
+
+        Subopcion.findOne({
+            where: {opcion: Number(respuesta), nombre: "fraction"}
+        }).then(function(subopcion){
+            var puntuacion = subopcion.valor;
+            Subopcion.findOne({
+                where: {opcion: Number(respuesta), nombre: "text"}
+            }).then(function(subopcion){
+                respuesta= subopcion.valor;
+                cb(puntuacion, respuesta);
+            })  
+        })
+    }, 
+
+       
+       /* var guardavalor1;
         var guardavalor2;
         
             
@@ -132,7 +149,7 @@ module.exports = {
             cb(guardavalor1, guardavalor2);
         })
                 
-    },
+    },*/
 
 
      comprobarTrueFalse: function(respuesta, cb) {

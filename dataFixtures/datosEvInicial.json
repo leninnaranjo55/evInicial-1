@@ -31,7 +31,51 @@
         "nombre": "text",
         "valor": "8",
         "id": 6
-    }
+    },
+    {
+          "nombre": "fraction",
+          "valor": "100",
+          "id": 7
+      },
+      {
+          "nombre": "text",
+          "valor": "true",
+          "id": 8
+      },
+      {
+          "nombre": "fraction",
+          "valor": "0",
+          "id": 9
+      },
+      {
+          "nombre": "text",
+          "valor": "false",
+          "id": 10
+      },
+      {
+          "nombre": "fraction",
+          "valor": "100",
+          "id": 11,
+          "opcion": 6
+      },
+      {
+          "nombre": "text",
+          "valor": "Madrid",
+          "id": 12,
+          "opcion": 6
+      },
+      {
+          "nombre": "fraction",
+          "valor": "0",
+          "id": 13,
+          "opcion": 7
+      },
+      {
+          "nombre": "text",
+          "valor": "Francia",
+          "id": 14,
+          "opcion": 7
+      }
     ]
   },
   {
@@ -84,7 +128,53 @@
                 "id": 6
             }
         ]
-    }
+    },
+     {
+          "tipoOpcion": "truefalse",
+          "id": 4,
+         "subopciones":[
+            {
+          "nombre": "fraction",
+          "valor": "100",
+          "id": 7
+      
+      },
+      {
+          "nombre": "text",
+          "valor": "true",
+          "id": 8
+      
+      }
+        ]
+      },
+      {
+          "tipoOpcion": "truefalse",
+          "id": 5,
+          "subopciones":[
+            {
+          "nombre": "fraction",
+          "valor": "0",
+          "id": 9
+         
+      },
+      {
+          "nombre": "text",
+          "valor": "false",
+          "id": 10
+         
+      }
+        ]
+      },
+      {
+          "tipoOpcion": "answer",
+          "id": 6,
+          "pregunta" : 1
+      },
+      {
+          "tipoOpcion": "answer",
+          "id": 7,
+          "pregunta": 1
+      }
     ]
   },
   {
@@ -92,7 +182,7 @@
     "items":[
     {
         "enunciado": "Capital de España",
-        "tipo": "Numerica",
+        "tipo": "EleccionMultiple",
         "id": 1
     },
     {
@@ -105,10 +195,51 @@
         "tipo": "Numerica",
         "id": 3
     },
+     {
+          "enunciado": "¿Eres alumno de 2DAW?",
+          "tipo": "True/False",
+          "id": 4,
+          "opciones":[
+          {
+          "tipoOpcion": "truefalse",
+          "id": 4,
+         "subopciones":[
+            {
+          "nombre": "fraction",
+          "valor": "100",
+          "id": 7
+        
+      },
+      {
+          "nombre": "text",
+          "valor": "true",
+          "id": 8
+      }
+        ]
+      },
+      {
+          "tipoOpcion": "truefalse",
+          "id": 5,
+          "subopciones":[
+            {
+          "nombre": "fraction",
+          "valor": "0",
+          "id": 9
+        
+      },
+      {
+          "nombre": "text",
+          "valor": "false",
+          "id": 10
+      }
+        ]
+      }
+          ]
+      },
     {
         "enunciado": "2+2",
         "tipo": "Numerica",
-        "id": 4,
+        "id": 5,
         "opciones":[
         {
             "tipoOpcion": "Answer 1",
