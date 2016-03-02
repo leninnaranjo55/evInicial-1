@@ -37,7 +37,14 @@ module.exports = {
 		console.log(req.cuestionario.id + ' - ' + req.cuestionario.alumnos)
 		req.cuestionario.asociarGrupo(req.grupo);
 		res.json(req.cuestionario);
-	}
+	},
+	siguiente: function(req, res){
+	  Pregunta.findOne({
+	    where: {id: {'>': req.params.preguntaId}}
+	  }).then(function(pregunta){
+	   res.json(pregunta);
+	  });
+}
 
 };
 

@@ -108,13 +108,5 @@ module.exports = {
 
 }
 
-siguiente: function(req, res, next){
-  Pregunta.findOne({
-    where: {id: {'>': req.params.preguntaId}}
-  }).then(function(pregunta){
-   res.json(pregunta);
-  })
-}
-
 };
 
